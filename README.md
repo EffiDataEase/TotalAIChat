@@ -11,5 +11,5 @@
 ![image](https://github.com/EffiDataEase/TotalAIChat/blob/main/screenshort2.jpg)
 
 
-## 作者联系方式
-微信:EffiDataEase
+
+
