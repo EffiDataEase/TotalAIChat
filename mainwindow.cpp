@@ -103,7 +103,25 @@ void MainWindow::AddMenu(){
 
 
 void MainWindow::InitPageData(){
-    auto page = new AIPage(mProfile,new MyWebView(this));
+
+    auto page = new AIPage(mProfile, new MyWebView(this));
+    page->mName = "智谱轻言";
+    page->mUrl = "https://chatglm.cn/main/alltoolsdetail?lang=zh";
+    page->mCheckReadyjs = R"({ var visibleElement = document.querySelector('textarea[data-v-8de3e874]');
+                            if (visibleElement) {
+                                console.log('***page ready***');
+                            }})";
+    page->mPrejs = "";
+
+    page->mEditjs = R"({ var textarea = document.querySelector('textarea[data-v-8de3e874]');
+                     textarea.value="%1";
+                     textarea.dispatchEvent(new Event('input', { bubbles: true }));})";
+
+    page->mButtonjs = R"({ var visibleElement = document.querySelector('img[data-v-8de3e874]');
+                    visibleElement.click();})";
+    mPageList.push_back(page);
+
+    page = new AIPage(mProfile,new MyWebView(this));
     page->mName = "天工AI";
     page->mUrl = "https://www.tiangong.cn/chat/universal/016";
     page->mCheckReadyjs = R"({ var visibleElement = document.querySelector('.el-textarea__inner');
@@ -282,7 +300,6 @@ void MainWindow::InitPageData(){
                             }
                         })";
     mPageList.push_back(page);
-
 }
 
 void MainWindow::ResizeDockWidget() {
